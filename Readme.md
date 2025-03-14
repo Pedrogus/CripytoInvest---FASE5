@@ -5,8 +5,11 @@ Uma plataforma rapida e segura para cripto investimentos,
   Neste Repositorio você encontrará todas as classes javas usadas no projeto dividida em pacotes.
 
 Models: Usuario, Carteira, Transação e Empresa
+<hr>
 Repository:
+<hr>
 Controller:
+<hr>
 Service: 
 
 
