@@ -1,3 +1,10 @@
 
+# CriptoIvest
 
-<h1> Cripto Invest </h1>
+Uma plataforma rapida e segura para cripto investimentos,
+  Neste Repositorio você encontrará todas as classes javas usadas no projeto dividida em pacotes.
+
+Models: Usuario, Carteira, Transação e Empresa
+Repository:
+Controller:
+Service: 
