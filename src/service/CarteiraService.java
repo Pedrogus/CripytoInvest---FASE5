@@ -12,11 +12,8 @@ public class CarteiraService {
         this.carteiraRepository = carteiraRepository;
     }
 
-    public List<Carteira> obterCarteirasDoUsuario(Long usuarioId) {
-        return carteiraRepository.buscarPorUsuario(usuarioId);
+    public Carteira buscarPorId(Long id) {
+        return carteiraRepository.buscarPorId(id).orElse(null);  // Retorna null se não encontrar
     }
 
-    public Carteira criarCarteira(Carteira carteira) {
-        return carteiraRepository.salvar(carteira);
-    }
 }

@@ -3,12 +3,13 @@ import models.Empresa;
 import models.Transacao;
 import models.Usuario;
 import repository.UsuarioRepository;
+import repository.UsuarioRepositoryImpl;
 import service.UsuarioService;
 
 public class Main {
     public static void main(String[] args) {
         // Criando os repositórios
-        UsuarioRepository usuarioRepository = new UsuarioRepository();
+        UsuarioRepository usuarioRepository = new UsuarioRepositoryImpl();
 
 
         // Criando os serviços

@@ -1,7 +1,10 @@
 package service;
 
-import repository.UsuarioRepository;
 import models.Usuario;
+import repository.UsuarioRepository;
+
+import java.util.List;
+import java.util.Optional;
 
 public class UsuarioService {
     private UsuarioRepository usuarioRepository;
@@ -15,10 +18,21 @@ public class UsuarioService {
     }
 
     public Usuario autenticar(String email, String senha) {
-        Usuario usuario = usuarioRepository.buscarPorEmail(email);
+        // Agora usamos `orElse(null)` para extrair o usuário
+        Usuario usuario = usuarioRepository.buscarPorEmail(email).orElse(null);
         if (usuario != null && usuario.getSenha().equals(senha)) {
             return usuario;
         }
         return null;
+    }
+
+    public Usuario buscarPorId(Long id) {
+        // Se o usuário não existir, retornamos `null`
+        return usuarioRepository.buscarPorId(id)
+                .orElseThrow(() -> new RuntimeException("Usuario não encontrado!"));
+    }
+
+    public List<Usuario> listarUsuarios() {
+        return usuarioRepository.listarUsuarios();
     }
 }

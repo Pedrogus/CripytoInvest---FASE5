@@ -12,11 +12,7 @@ public class TransacaoService {
         this.transacaoRepository = transacaoRepository;
     }
 
-    public List<Transacao> obterTransacoesPorCarteira(Long carteiraId) {
-        return transacaoRepository.buscarPorCarteira(carteiraId);
-    }
-
-    public Transacao registrarTransacao(Transacao transacao) {
-        return transacaoRepository.salvar(transacao);
+    public Transacao criarTransacao(Transacao transacao) {
+        return transacaoRepository.salvar(transacao);  // Salva a transação no repositório
     }
 }
