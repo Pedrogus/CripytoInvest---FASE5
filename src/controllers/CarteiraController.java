@@ -2,6 +2,7 @@ package controllers;
 
 import models.Carteira;
 import service.CarteiraService;
+import java.util.Optional;
 
 public class CarteiraController {
     private CarteiraService carteiraService;
@@ -12,7 +13,4 @@ public class CarteiraController {
     }
 
 
-    public Carteira visualizarCarteira(Long id) {
-        return carteiraService.buscarPorId(id);
-    }
 }

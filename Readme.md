@@ -8,7 +8,7 @@ Models: Usuario, Carteira, Transação e Empresa.
 <hr>
 Repository: UsuarioRepostory, CarteiraRepostory, TransacaoRepository, EmpresaReposytory.
 <hr>
-Controller: UsuarioController, CarteiraController, EmpresaContoller, 
+Controller: UsuarioController, CarteiraController, TransaçãoController, EmpresaContoller.
 <hr>
 Service: UsuarioService, CarteiraService, TransaçãoService e EmpresaService.
 <hr>

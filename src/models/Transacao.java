@@ -1,34 +1,39 @@
 package models;
 
+import java.time.LocalDateTime;
+
 public class Transacao {
     private Long id;
-    private Long carteiraId;
-    private String tipo; // Compra ou Venda
+    private Carteira carteira;
+    private String tipo;
     private double valor;
-    private String data;
+    private LocalDateTime data;
 
-    public Transacao() {}
-
-    public Transacao(Long id, Long carteiraId, String tipo, double valor, String data) {
+    public Transacao(Long id, Carteira carteira, String tipo, double valor, LocalDateTime data) {
         this.id = id;
-        this.carteiraId = carteiraId;
+        this.carteira = carteira;
         this.tipo = tipo;
         this.valor = valor;
         this.data = data;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public Long getCarteiraId() { return carteiraId; }
-    public void setCarteiraId(Long carteiraId) { this.carteiraId = carteiraId; }
+    public Carteira getCarteira() {
+        return carteira;
+    }
 
-    public String getTipo() { return tipo; }
-    public void setTipo(String tipo) { this.tipo = tipo; }
+    public String getTipo() {
+        return tipo;
+    }
 
-    public double getValor() { return valor; }
-    public void setValor(double valor) { this.valor = valor; }
+    public double getValor() {
+        return valor;
+    }
 
-    public String getData() { return data; }
-    public void setData(String data) { this.data = data; }
+    public LocalDateTime getData() {
+        return data;
+    }
 }

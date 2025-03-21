@@ -1,26 +1,30 @@
 package models;
 
 public class Carteira {
+    private Long id;
+    private Usuario usuario;
+    private double saldo;
 
-        private Long id;
-        private Long usuarioId;
-        private double saldo;
-
-        public Carteira() {}
-
-        public Carteira(Long id, Long usuarioId, double saldo) {
-            this.id = id;
-            this.usuarioId = usuarioId;
-            this.saldo = saldo;
-        }
-
-        public Long getId() { return id; }
-        public void setId(Long id) { this.id = id; }
-
-        public Long getUsuarioId() { return usuarioId; }
-        public void setUsuarioId(Long usuarioId) { this.usuarioId = usuarioId; }
-
-        public double getSaldo() { return saldo; }
-        public void setSaldo(double saldo) { this.saldo = saldo; }
+    public Carteira(Long id, Usuario usuario, double saldo) {
+        this.id = id;
+        this.usuario = usuario;
+        this.saldo = saldo;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+}
 
