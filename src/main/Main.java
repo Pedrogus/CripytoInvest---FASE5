@@ -1,3 +1,5 @@
+package main;
+
 import controllers.*;
 import models.*;
 import repository.*;
@@ -24,9 +26,12 @@ public class Main {
         CarteiraController carteiraController = new CarteiraController(carteiraService);
         TransacaoController transacaoController = new TransacaoController(transacaoService);
 
-        System.out.print("ID da Carteira: ");
+        System.out.print("ID da Carteira (ou 0 para criar uma nova): ");
         Long carteiraId = scanner.nextLong();
-
+        if (carteiraId == 0) {
+            carteiraId = (long) (Math.random() * 1000);
+            System.out.println("Criando nova carteira com ID: " + carteiraId);
+        }
 
         while (true) {
             System.out.println("\n--- Menu ---");
@@ -38,7 +43,7 @@ public class Main {
             System.out.println("6. Sair");
             System.out.print("Escolha uma opção: ");
             int opcao = scanner.nextInt();
-            scanner.nextLine(); // Consumir quebra de linha
+            scanner.nextLine(); 
 
             switch (opcao) {
                 case 1:
@@ -57,30 +62,30 @@ public class Main {
                     System.out.print("ID do Usuário: ");
                     Long userId = scanner.nextLong();
                     Usuario user = usuarioService.buscarPorId(userId);
-                    if (user != null) {
-                        System.out.print("Saldo inicial: ");
-                        double saldo = scanner.nextDouble();
-                        Carteira carteira = carteiraService.buscarPorId(carteiraId).orElse(null);
-                        if (carteira != null) {
-                            System.out.println("Carteira encontrada: " + carteira.getId());
-                        } else {
-                            System.out.println("Carteira não encontrada.");
-                        }
-                        carteiraRepository.salvar(carteira);
-                        System.out.println("Carteira criada com sucesso!");
-                    } else {
-                        System.out.println("Usuário não encontrado.");
-                    }
+                  if (user != null) {
+                	  System.out.print("Saldo inicial: ");
+                      double saldo = scanner.nextDouble();
+                      
+                      Long carteiraIdGerado = (long) (Math.random() * 1000);
+                      Carteira novaCarteira = new Carteira(carteiraIdGerado, user, saldo);
+                      carteiraRepository.salvar(novaCarteira);
+                      
+                      System.out.println("Carteira criada com sucesso! ID: " + novaCarteira.getId());
+                  	} else {
+                  		System.out.println("Usuário não encontrado.");
+                  }
                     break;
                 case 3:
+                	System.out.println("Buscando carteira com ID: " + carteiraId);
                     Optional<Carteira> carteiraI = carteiraRepository.buscarPorId(carteiraId);
+                    
                     if (carteiraI.isPresent()) {
                         System.out.print("Valor a adicionar: ");
                         double valor = scanner.nextDouble();
                         carteiraService.adicionarFundo(carteiraI.get(), valor);
                         System.out.println("Fundos adicionados com sucesso!");
                     } else {
-                        System.out.println("Carteira não encontrada.");
+                        System.out.println("Erro: Carteira não encontrada.");
                     }
                     break;
                 case 4:

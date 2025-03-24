@@ -12,7 +12,7 @@ public class CarteiraRepositoryImpl implements CarteiraRepository {
     @Override
     public Optional<Carteira> buscarPorId(Long id) {
         return carteiras.stream()
-                .filter(carteira -> carteira.getId().equals(id))
+                .filter(c -> c.getId().equals(id))
                 .findFirst();
     }
 

@@ -7,7 +7,7 @@ import models.Carteira;
 import java.util.Optional;
 
 public class CarteiraService {
-    private CarteiraRepository carteiraRepository;
+    private final CarteiraRepository carteiraRepository;
 
     public CarteiraService(CarteiraRepository carteiraRepository) {
         this.carteiraRepository = carteiraRepository;
