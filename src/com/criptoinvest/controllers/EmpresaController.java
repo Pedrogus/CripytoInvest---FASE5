@@ -1,9 +1,9 @@
-package controllers;
+package com.criptoinvest.controllers;
 
 import java.util.List;
 
-import models.Empresa;
-import service.EmpresaService;
+import com.criptoinvest.models.Empresa;
+import com.criptoinvest.service.EmpresaService;
 
 public class EmpresaController {
     private EmpresaService empresaService;

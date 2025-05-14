@@ -1,10 +1,9 @@
-package service;
+package com.criptoinvest.service;
 
-import models.Usuario;
-import repository.UsuarioRepository;
+import com.criptoinvest.models.Usuario;
+import com.criptoinvest.repository.UsuarioRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 public class UsuarioService {
     private UsuarioRepository usuarioRepository;

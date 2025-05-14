@@ -1,6 +1,6 @@
-package repository;
+package com.criptoinvest.repository;
 
-import models.Usuario;
+import com.criptoinvest.models.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

@@ -1,7 +1,7 @@
-package repository;
+package com.criptoinvest.repository;
 
 import java.util.List;
-import models.Carteira;
+import com.criptoinvest.models.Carteira;
 import java.util.Optional;
 
 public interface CarteiraRepository {

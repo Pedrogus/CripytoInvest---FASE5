@@ -1,14 +1,17 @@
-package main;
+package com.criptoinvest.main;
 
-import controllers.*;
-import models.*;
-import repository.*;
-import service.*;
+import com.criptoinvest.models.Transacao;
+import com.criptoinvest.models.Usuario;
+import com.criptoinvest.controllers.*;
+import com.criptoinvest.models.*;
+import com.criptoinvest.repository.*;
+import com.criptoinvest.service.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        /*
         Scanner scanner = new Scanner(System.in);
 
         // Criando repositórios
@@ -21,7 +24,7 @@ public class Main {
         CarteiraService carteiraService = new CarteiraService(carteiraRepository);
         TransacaoService transacaoService = new TransacaoService(transacaoRepository);
 
-        // Criando controllers
+        // Criando com.criptoinvest.controllers
         UsuarioController usuarioController = new UsuarioController(usuarioService);
         CarteiraController carteiraController = new CarteiraController(carteiraService);
         TransacaoController transacaoController = new TransacaoController(transacaoService);
@@ -127,5 +130,25 @@ public class Main {
                     System.out.println("Opção inválida.");
             }
         }
+         */
+
+        Cliente cliente = new Cliente(1L, "Maria", "marry@email.com","senha","Cliente");
+        Transacao transacao = new Transacao();
+
+        cliente.exibirDados();
+
+        // Realizando uma transação de adicionar saldo
+        transacao.adicionarSaldo(cliente.getCarteira(), 100.0);
+
+        // Exibindo informações do cliente após a transação de adicionar saldo
+        cliente.exibirDados();
+
+        // Realizando uma transação de retirar saldo
+        transacao.retirarSaldo(cliente.getCarteira(), 50.0);
+
+        // Exibindo informações do cliente após a transação de retirar saldo
+        cliente.exibirDados();
     }
+
+
 }

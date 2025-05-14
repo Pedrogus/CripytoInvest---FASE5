@@ -1,7 +1,7 @@
-package controllers;
+package com.criptoinvest.controllers;
 
-import models.Transacao;
-import service.TransacaoService;
+import com.criptoinvest.models.Transacao;
+import com.criptoinvest.service.TransacaoService;
 
 public class TransacaoController {
     private TransacaoService transacaoService;

@@ -1,7 +1,7 @@
-package repository;
+package com.criptoinvest.repository;
 
-import models.Transacao;
-import models.Carteira;
+import com.criptoinvest.models.Transacao;
+import com.criptoinvest.models.Carteira;
 
 import java.util.List;
 

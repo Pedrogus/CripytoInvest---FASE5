@@ -1,7 +1,7 @@
-package repository;
+package com.criptoinvest.repository;
 import java.util.List;
 
-import models.Empresa;
+import com.criptoinvest.models.Empresa;
 
 public interface EmpresaRepository {
     List<Empresa> buscarTodas();

@@ -1,6 +1,6 @@
-package repository;
+package com.criptoinvest.repository;
 
-import models.Carteira;
+import com.criptoinvest.models.Carteira;
 
 import java.util.ArrayList;
 import java.util.List;

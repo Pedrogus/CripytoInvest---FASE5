@@ -1,9 +1,9 @@
-package controllers;
+package com.criptoinvest.controllers;
 
 import java.util.List;
 
-import service.UsuarioService;
-import models.Usuario;
+import com.criptoinvest.service.UsuarioService;
+import com.criptoinvest.models.Usuario;
 
 public class UsuarioController {
 

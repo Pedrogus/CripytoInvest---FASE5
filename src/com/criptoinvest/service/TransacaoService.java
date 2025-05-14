@@ -1,9 +1,7 @@
-package service;
+package com.criptoinvest.service;
 
-import java.util.List;
-
-import repository.TransacaoRepository;
-import models.Transacao;
+import com.criptoinvest.repository.TransacaoRepository;
+import com.criptoinvest.models.Transacao;
 
 public class TransacaoService {
     private TransacaoRepository transacaoRepository;

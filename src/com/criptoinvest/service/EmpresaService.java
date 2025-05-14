@@ -1,9 +1,9 @@
-package service;
+package com.criptoinvest.service;
 
 import java.util.List;
 
-import models.Empresa;
-import repository.EmpresaRepository;
+import com.criptoinvest.models.Empresa;
+import com.criptoinvest.repository.EmpresaRepository;
 
 public class EmpresaService {
     private EmpresaRepository empresaRepository;

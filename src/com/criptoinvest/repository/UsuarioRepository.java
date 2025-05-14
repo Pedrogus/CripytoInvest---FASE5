@@ -1,10 +1,9 @@
-package repository;
+package com.criptoinvest.repository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import models.Usuario;
+import com.criptoinvest.models.Usuario;
 
 public interface UsuarioRepository {
     Usuario salvar(Usuario usuario);

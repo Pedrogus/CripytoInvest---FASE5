@@ -1,9 +1,7 @@
-package service;
+package com.criptoinvest.service;
 
-import java.util.List;
-
-import repository.CarteiraRepository;
-import models.Carteira;
+import com.criptoinvest.repository.CarteiraRepository;
+import com.criptoinvest.models.Carteira;
 import java.util.Optional;
 
 public class CarteiraService {
