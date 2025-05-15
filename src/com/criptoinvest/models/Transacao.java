@@ -9,8 +9,7 @@ public class Transacao {
     private double valor;
     private LocalDateTime data;
 
-    public Transacao() {
-    }
+    public Transacao() {}
 
     public Transacao(Long id, Carteira carteira, String tipo, double valor, LocalDateTime data) {
         this.id = id;
@@ -40,15 +39,6 @@ public class Transacao {
         return data;
     }
 
-    public void adicionarSaldo(Carteira carteira, double valor) {
-        if (valor > 0) {
-            double novoSaldo = carteira.getSaldo() + valor;
-            carteira.setSaldo(novoSaldo);
-            System.out.println("Saldo adicionado. Novo saldo: " + novoSaldo);
-        } else {
-            System.out.println("Valor inválido para adicionar.");
-        }
-    }
 
     public void retirarSaldo(Carteira carteira, double valor) {
         if (valor > 0 && carteira.getSaldo() >= valor) {

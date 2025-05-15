@@ -5,31 +5,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class UsuarioRepositoryImpl implements UsuarioRepository {
-    private List<Usuario> usuarios = new ArrayList<>();
+public class UsuarioRepositoryImpl<T extends Usuario> implements UsuarioRepository<T> {
+    private List<T> usuarios = new ArrayList<>();
 
     @Override
-    public Usuario salvar(Usuario usuario) {
+    public T salvar(T usuario) {
         usuarios.add(usuario);
         return usuario;
     }
 
     @Override
-    public Optional<Usuario> buscarPorEmail(String email) {
+    public Optional<T> buscarPorEmail(String email) {
         return usuarios.stream()
-                .filter(usuario -> usuario.getEmail().equals(email))
+                .filter(u -> u.getEmail().equals(email))
                 .findFirst();
     }
 
     @Override
-    public Optional<Usuario> buscarPorId(Long id) {
+    public Optional<T> buscarPorId(Long id) {
         return usuarios.stream()
-                .filter(usuario -> usuario.getId().equals(id))
+                .filter(u -> u.getId().equals(id))
                 .findFirst();
     }
 
     @Override
-    public List<Usuario> listarUsuarios() {
+    public List<T> listarUsuarios() {
         return new ArrayList<>(usuarios);
     }
 }

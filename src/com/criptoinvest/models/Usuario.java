@@ -34,6 +34,4 @@ public class Usuario {
     public String getRole() { return role; }
     public void setRole(String role) { this.role = role; }
 
-    public void exibirDados() { System.out.println("Usuario: " + nome + "(" + role + ")");}
-
 }

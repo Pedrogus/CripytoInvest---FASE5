@@ -4,8 +4,10 @@ public class Carteira {
     private Long id;
     private Usuario usuario;
     private double saldo;
+    public Long carteiraIdGerado = null;
 
-    public  Carteira() {}
+    public Carteira() {
+    }
 
     public Carteira(Long id, Usuario usuario, double saldo) {
         this.id = id;
@@ -28,7 +30,5 @@ public class Carteira {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
-
-    public void exibirSaldo() { System.out.println("Saldo atual: " + saldo); }
 }
 
