@@ -8,8 +8,8 @@ public class Empresa extends Usuario {
     public Empresa() {
     }
 
-    public Empresa(Long id, String nome, String email, String setor, String cnpj) {
-        super(id, nome, email, null, "Empresa");
+    public Empresa(Long id, String nome, String email,String senha, String setor, String cnpj) {
+        super(id, nome, email, senha, "Empresa");
         this.setor = setor;
         this.cnpj = cnpj;
     }

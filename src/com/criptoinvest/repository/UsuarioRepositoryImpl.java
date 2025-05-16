@@ -30,6 +30,15 @@ public class UsuarioRepositoryImpl<T extends Usuario> implements UsuarioReposito
 
     @Override
     public List<T> listarUsuarios() {
-        return new ArrayList<>(usuarios);
+        List<T> listaUsuarios = new ArrayList<>(usuarios);
+        if (listaUsuarios.isEmpty()) {
+            System.out.println("Nenhum usuario encontrado");
+        } else {
+            for(T usuario : listaUsuarios) {
+                System.out.println(usuario.toString());
+            }
+        }
+
+        return listaUsuarios;
     }
 }
