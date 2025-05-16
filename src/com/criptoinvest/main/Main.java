@@ -4,7 +4,6 @@ import com.criptoinvest.controllers.*;
 import com.criptoinvest.models.*;
 import com.criptoinvest.repository.*;
 import com.criptoinvest.service.*;
-import java.time.LocalDateTime;
 import java.util.*;
 
 public class Main {
@@ -35,7 +34,6 @@ public class Main {
         );
 
         while (true) {
-
             Menu.exibirmenu();
             int opcao = scanner.nextInt();
             scanner.nextLine();

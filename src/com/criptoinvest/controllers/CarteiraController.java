@@ -10,9 +10,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CarteiraController {
-    private CarteiraRepository carteiraRepository;
-    private CarteiraService carteiraService;
-    private UsuarioService usuarioService;
+    private final CarteiraRepository carteiraRepository;
+    private  final CarteiraService carteiraService;
+    private final UsuarioService usuarioService;
 
     // Construtor para injetar a dependência do CarteiraService
     public CarteiraController(CarteiraService carteiraService,
@@ -24,7 +24,7 @@ public class CarteiraController {
     }
 
 
-    public Carteira criarCarteira(Carteira carteira,Scanner scanner) {
+    public Carteira criarCarteira(Carteira carteira, Scanner scanner) {
         try {
             System.out.print("ID do Usuário: ");
             Long userId = scanner.nextLong();
