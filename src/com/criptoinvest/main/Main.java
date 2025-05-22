@@ -33,6 +33,10 @@ public class Main {
                 transacaoRepository
         );
 
+
+        //HashMap
+        Map<Carteira, List<Transacao>> mapaCarteiraTransacoes = new HashMap<>();
+
         while (true) {
             Menu.exibirmenu();
             int opcao = scanner.nextInt();
@@ -58,13 +62,26 @@ public class Main {
                     break;
 
 
+                    // HashMap de Carteira e Transação
                 case 4:
                     try {
                         System.out.print("ID da Carteira: ");
                         String idCarteiraInput = scanner.nextLine();
                         Long idCarteiraGerado = Long.parseLong(idCarteiraInput);
 
-                        transacaoController.exibirHistoricoTransacao(idCarteiraGerado);
+                        transacaoController.armazenaHistoricoTransacao(idCarteiraGerado, mapaCarteiraTransacoes);
+
+                        for(Map.Entry<Carteira, List<Transacao>> entry : mapaCarteiraTransacoes.entrySet()) {
+                            carteira = entry.getKey();
+                            List<Transacao> transacoes = entry.getValue();
+
+                            System.out.println("Carteira ID: " + carteira.getId());
+                            System.out.println("Histórico de transações:");
+
+                            for (Transacao t : transacoes) {
+                                System.out.println("- " + t.getTipo() + " de R$ " + t.getValor() + " em " + t.getData());
+                            }
+                        }
                     } catch (NumberFormatException e) {
                         System.out.println("Erro: ID da carteira deve ser um numero valido");
                     }

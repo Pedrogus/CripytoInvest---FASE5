@@ -9,6 +9,7 @@ import com.criptoinvest.service.TransacaoService;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -36,8 +37,8 @@ public class TransacaoController {
         return transacaoService.criarTransacao(transacao);  // Chama o método no serviço
     }
 
-    public void exibirHistoricoTransacao(Long idCarteiraGerado) {
-        try {
+    public void armazenaHistoricoTransacao(Long idCarteiraGerado, Map<Carteira, List<Transacao>> mapaCarteiraTransacoes) {
+        try{
             Optional<Carteira> carteiraHist = carteiraRepository.buscarPorId(idCarteiraGerado);
 
             if (carteiraHist.isPresent()) {
@@ -45,22 +46,23 @@ public class TransacaoController {
                 List<Transacao> transacoes = transacaoRepository.findByCarteira(carteira);
 
                 if (transacoes.isEmpty()) {
-                    throw new IllegalStateException("O histórico de transações está vazio.");
+                    throw new IllegalArgumentException("O histórico de transações está vazio.");
                 }
 
-                System.out.println("Histórico de transações:");
-                for (Transacao t : transacoes) {
-                    System.out.println("- " + t.getTipo() + " de R$ " + t.getValor() + " em " + t.getData() + " Saldo final: " + carteira.getSaldo());
-                }
+                mapaCarteiraTransacoes.put(carteira, transacoes);
+                System.out.println("Historico de transações armazenado no HashMap  com sucesso!");
+
+
             } else {
                 System.out.println("Carteira não encontrada.");
             }
-        }  catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("Erro: " + e.getMessage());
         } catch (Exception e) {
             System.out.println("Erro Inesperado: " + e.getMessage());
         }
     }
+
 
     public void criarTransacao(Long idCarteiraGerado, Scanner scanner) {
         try {
@@ -74,7 +76,7 @@ public class TransacaoController {
             carteira = carteiraOpt.get();
             System.out.println("Saldo atual: " + carteira.getSaldo());
 
-            System.out.print("Tipo de Transação (DEPÓSITO/SAQUE): ");
+            System.out.print("Tipo de Transação (DEPOSITO/SAQUE): ");
             String tipo = scanner.nextLine().toUpperCase();
 
             if (!tipo.equals("DEPOSITO") && !tipo.equals("SAQUE")) {
