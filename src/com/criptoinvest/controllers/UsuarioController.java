@@ -1,23 +1,21 @@
 package com.criptoinvest.controllers;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 
 import com.criptoinvest.models.Cliente;
 import com.criptoinvest.models.Empresa;
-import com.criptoinvest.repository.UsuarioRepository;
-import com.criptoinvest.service.TransacaoService;
+import com.criptoinvest.repository.usuarioRepositoryInterface;
 import com.criptoinvest.service.UsuarioService;
 import com.criptoinvest.models.Usuario;
 
 public class UsuarioController {
 
     private UsuarioService usuarioService;
-    private UsuarioRepository usuarioRepository;
+    private usuarioRepositoryInterface usuarioRepositoryInterface;
 
-    public UsuarioController(UsuarioService usuarioService, UsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
+    public UsuarioController(UsuarioService usuarioService, usuarioRepositoryInterface usuarioRepositoryInterface) {
+        this.usuarioRepositoryInterface = usuarioRepositoryInterface;
         this.usuarioService = usuarioService;
     }
 
@@ -49,7 +47,7 @@ public class UsuarioController {
                 throw new IllegalArgumentException("Role inválido!. Use CLIENTE or EMPRESA.");
             }
 
-            usuarioRepository.salvar(usuario);
+            usuarioRepositoryInterface.salvar(usuario);
             System.out.println("Usuario criada com sucesso! ID: " + usuario.getId());
             return usuario;
 

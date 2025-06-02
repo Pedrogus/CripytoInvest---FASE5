@@ -2,7 +2,7 @@ package com.criptoinvest.controllers;
 
 import com.criptoinvest.models.Carteira;
 import com.criptoinvest.models.Usuario;
-import com.criptoinvest.repository.CarteiraRepository;
+import com.criptoinvest.repository.CarteiraRepositoryInterface;
 import com.criptoinvest.service.CarteiraService;
 import com.criptoinvest.service.UsuarioService;
 
@@ -10,16 +10,16 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CarteiraController {
-    private final CarteiraRepository carteiraRepository;
+    private final CarteiraRepositoryInterface carteiraRepositoryInterface;
     private  final CarteiraService carteiraService;
     private final UsuarioService usuarioService;
 
     // Construtor para injetar a dependência do CarteiraService
     public CarteiraController(CarteiraService carteiraService,
-                              CarteiraRepository  carteiraRepository,
+                              CarteiraRepositoryInterface carteiraRepositoryInterface,
                               UsuarioService usuarioService) {
         this.carteiraService = carteiraService;
-        this.carteiraRepository = carteiraRepository;
+        this.carteiraRepositoryInterface = carteiraRepositoryInterface;
         this.usuarioService = usuarioService;
     }
 
@@ -44,7 +44,7 @@ public class CarteiraController {
 
                 carteira.carteiraIdGerado = (long) (Math.random() * 1000);
                 Carteira novaCarteira = new Carteira(carteira.carteiraIdGerado, user, saldo);
-                carteiraRepository.salvar(novaCarteira);
+                carteiraRepositoryInterface.salvar(novaCarteira);
 
                 System.out.println("Carteira criada com sucesso! ID: " + novaCarteira.getId());
             } else {

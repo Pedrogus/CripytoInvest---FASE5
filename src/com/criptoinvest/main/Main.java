@@ -14,23 +14,23 @@ public class Main {
         Carteira carteira = new Carteira();
 
         // Criando repositórios
-        UsuarioRepository usuarioRepository = new UsuarioRepositoryImpl();
-        CarteiraRepository carteiraRepository = new CarteiraRepositoryImpl();
-        TransacaoRepository transacaoRepository = new TransacaoRepositoryImpl();
+        usuarioRepositoryInterface usuarioRepositoryInterface = new usuarioRepository();
+        CarteiraRepositoryInterface carteiraRepositoryInterface = new CarteiraRepository();
+        TransacaoRepositoryInterface transacaoRepositoryInterface = new TransacaoRepository();
 
         // Criando serviços
-        UsuarioService usuarioService = new UsuarioService(usuarioRepository);
-        CarteiraService carteiraService = new CarteiraService(carteiraRepository);
-        TransacaoService transacaoService = new TransacaoService(transacaoRepository);
+        UsuarioService usuarioService = new UsuarioService(usuarioRepositoryInterface);
+        CarteiraService carteiraService = new CarteiraService(carteiraRepositoryInterface);
+        TransacaoService transacaoService = new TransacaoService(transacaoRepositoryInterface);
 
         // Criando com.criptoinvest.controllers
-        UsuarioController usuarioController = new UsuarioController(usuarioService, usuarioRepository);
-        CarteiraController carteiraController = new CarteiraController(carteiraService, carteiraRepository, usuarioService);
+        UsuarioController usuarioController = new UsuarioController(usuarioService, usuarioRepositoryInterface);
+        CarteiraController carteiraController = new CarteiraController(carteiraService, carteiraRepositoryInterface, usuarioService);
         TransacaoController transacaoController = new TransacaoController(
                 transacaoService,
                 carteiraService,
-                carteiraRepository,
-                transacaoRepository
+                carteiraRepositoryInterface,
+                transacaoRepositoryInterface
         );
 
 

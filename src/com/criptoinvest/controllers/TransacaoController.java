@@ -2,8 +2,8 @@ package com.criptoinvest.controllers;
 
 import com.criptoinvest.models.Carteira;
 import com.criptoinvest.models.Transacao;
-import com.criptoinvest.repository.CarteiraRepository;
-import com.criptoinvest.repository.TransacaoRepository;
+import com.criptoinvest.repository.CarteiraRepositoryInterface;
+import com.criptoinvest.repository.TransacaoRepositoryInterface;
 import com.criptoinvest.service.CarteiraService;
 import com.criptoinvest.service.TransacaoService;
 
@@ -17,19 +17,19 @@ public class TransacaoController {
     private Carteira carteira;
     private final CarteiraService carteiraService;
     private final TransacaoService transacaoService;
-    private final CarteiraRepository carteiraRepository;
-    private final TransacaoRepository transacaoRepository;
+    private final CarteiraRepositoryInterface carteiraRepositoryInterface;
+    private final TransacaoRepositoryInterface transacaoRepositoryInterface;
 
 
     // Construtor para injetar a dependência do TransacaoService
     public TransacaoController(TransacaoService transacaoService,
                                CarteiraService carteiraService,
-                               CarteiraRepository carteiraRepository,
-                               TransacaoRepository transacaoRepository) {
+                               CarteiraRepositoryInterface carteiraRepositoryInterface,
+                               TransacaoRepositoryInterface transacaoRepositoryInterface) {
         this.transacaoService = transacaoService;
         this.carteiraService = carteiraService;
-        this.carteiraRepository = carteiraRepository;
-        this.transacaoRepository = transacaoRepository;
+        this.carteiraRepositoryInterface = carteiraRepositoryInterface;
+        this.transacaoRepositoryInterface = transacaoRepositoryInterface;
     }
 
     // Método para criar uma transação
@@ -39,11 +39,11 @@ public class TransacaoController {
 
     public void armazenaHistoricoTransacao(Long idCarteiraGerado, Map<Carteira, List<Transacao>> mapaCarteiraTransacoes) {
         try{
-            Optional<Carteira> carteiraHist = carteiraRepository.buscarPorId(idCarteiraGerado);
+            Optional<Carteira> carteiraHist = carteiraRepositoryInterface.buscarPorId(idCarteiraGerado);
 
             if (carteiraHist.isPresent()) {
                 Carteira carteira = carteiraHist.get();
-                List<Transacao> transacoes = transacaoRepository.findByCarteira(carteira);
+                List<Transacao> transacoes = transacaoRepositoryInterface.findByCarteira(carteira);
 
                 if (transacoes.isEmpty()) {
                     throw new IllegalArgumentException("O histórico de transações está vazio.");
@@ -66,7 +66,7 @@ public class TransacaoController {
 
     public void criarTransacao(Long idCarteiraGerado, Scanner scanner) {
         try {
-            Optional<Carteira> carteiraOpt = carteiraRepository.buscarPorId(idCarteiraGerado);
+            Optional<Carteira> carteiraOpt = carteiraRepositoryInterface.buscarPorId(idCarteiraGerado);
 
             if (carteiraOpt.isEmpty()) {
                 System.out.println("Carteira não encontrada.");

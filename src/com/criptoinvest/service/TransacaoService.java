@@ -1,16 +1,16 @@
 package com.criptoinvest.service;
 
-import com.criptoinvest.repository.TransacaoRepository;
+import com.criptoinvest.repository.TransacaoRepositoryInterface;
 import com.criptoinvest.models.Transacao;
 
 public class TransacaoService {
-    private TransacaoRepository transacaoRepository;
+    private TransacaoRepositoryInterface transacaoRepositoryInterface;
 
-    public TransacaoService(TransacaoRepository transacaoRepository) {
-        this.transacaoRepository = transacaoRepository;
+    public TransacaoService(TransacaoRepositoryInterface transacaoRepositoryInterface) {
+        this.transacaoRepositoryInterface = transacaoRepositoryInterface;
     }
 
     public Transacao criarTransacao(Transacao transacao) {
-        return transacaoRepository.salvar(transacao);  // Salva a transação no repositório
+        return transacaoRepositoryInterface.salvar(transacao);  // Salva a transação no repositório
     }
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class UsuarioRepositoryImpl<T extends Usuario> implements UsuarioRepository<T> {
+public class usuarioRepository<T extends Usuario> implements usuarioRepositoryInterface<T> {
     private List<T> usuarios = new ArrayList<>();
 
     @Override

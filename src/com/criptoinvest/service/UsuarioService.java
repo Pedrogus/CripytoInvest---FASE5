@@ -1,24 +1,24 @@
 package com.criptoinvest.service;
 
 import com.criptoinvest.models.Usuario;
-import com.criptoinvest.repository.UsuarioRepository;
+import com.criptoinvest.repository.usuarioRepositoryInterface;
 
 import java.util.List;
 
 public class UsuarioService {
-    private UsuarioRepository<Usuario> usuarioRepository;
+    private usuarioRepositoryInterface<Usuario> usuarioRepositoryInterface;
 
-    public UsuarioService(UsuarioRepository<Usuario> usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
+    public UsuarioService(usuarioRepositoryInterface<Usuario> usuarioRepositoryInterface) {
+        this.usuarioRepositoryInterface = usuarioRepositoryInterface;
     }
 
     public Usuario registrarUsuario(Usuario usuario) {
-        return usuarioRepository.salvar(usuario);
+        return usuarioRepositoryInterface.salvar(usuario);
     }
 
     public Usuario autenticar(String email, String senha) {
         // Agora usamos `orElse(null)` para extrair o usuário
-        Usuario usuario = usuarioRepository.buscarPorEmail(email).orElse(null);
+        Usuario usuario = usuarioRepositoryInterface.buscarPorEmail(email).orElse(null);
         if (usuario != null && usuario.getSenha().equals(senha)) {
             return usuario;
         }
@@ -27,11 +27,11 @@ public class UsuarioService {
 
     public Usuario buscarPorId(Long id) {
         // Se o usuário não existir, retornamos `null`
-        return usuarioRepository.buscarPorId(id)
+        return usuarioRepositoryInterface.buscarPorId(id)
                 .orElseThrow(() -> new RuntimeException("Usuario não encontrado!"));
     }
 
     public List<Usuario> listarUsuarios() {
-        return usuarioRepository.listarUsuarios();
+        return usuarioRepositoryInterface.listarUsuarios();
     }
 }
