@@ -17,7 +17,7 @@ Este repositório contém todas as classes Java utilizadas no projeto, organizad
   📧 pedrojuchimiuk@gmail.com
 
 - **Pedro Henrique Ramondini Palmeira**  
-  📧 peramondini709@gmail.com
+  📧 peramondini709@gmail.com (saiu)
 
 ---
 
