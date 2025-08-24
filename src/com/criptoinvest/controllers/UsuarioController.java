@@ -60,6 +60,51 @@ public class UsuarioController {
         return null;
     }
 
+    public Usuario atualizarUsuario(Scanner scanner) {
+        try{
+            Long id = Long.parseLong(lerEntrada(scanner, "ID do usuario a atualizar: "));
+            String nome = lerEntrada(scanner, "Novo Nome do usuario: ");
+            String email = lerEntrada(scanner, "Novo Email do usuario: ");
+            String senha = lerEntrada(scanner, "Nova Senha do usuario: ");
+            String role = lerEntrada(scanner, " Novo Role (CLIENTE / EMPRESA): ").toUpperCase();
+
+            Usuario usuario = new Usuario(id, nome, email, senha, role);
+
+            boolean atualizado = usuarioRepositoryInterface.atualizarUsuario(usuario);
+            if(atualizado){
+                System.out.println("Usuario atualizado com sucesso!");
+                return usuario;
+            } else {
+                System.out.println("Nenhum usuario encontrado com esse ID.");
+            }
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("Erro: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Erro inesperado: " + e.getMessage());
+        }
+        return null;
+    }
+
+
+    public void excluirUsuario(Scanner scanner) {
+        try {
+            Long id = Long.parseLong(lerEntrada(scanner, "ID do usuario a excluir: "));
+
+            boolean excluido = usuarioRepositoryInterface.excluirUsuario(id);
+            if (excluido) {
+                System.out.println("Usuario excluido com sucesso!");
+            } else {
+                System.out.println("Nenhum usuario encontrado com esse ID.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Erro: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Erro inesperado: " + e.getMessage());
+        }
+    }
+
+
     private String lerEntrada(Scanner scanner, String mensagem) {
         System.out.print(mensagem);
         String entrada = scanner.nextLine().trim();

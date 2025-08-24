@@ -18,10 +18,10 @@ public class Menu {
 
             System.out.println("\n--- Menu ---");
             System.out.println("1. Registrar Usuário");
-            System.out.println("2. Criar Carteira");
-            System.out.println("3. Criar Transação");
-            System.out.println("4. Exibir Histórico de Transações");
-            System.out.println("5. Exibir dados dos Usuarios");
+            System.out.println("2. Atualiza Usuario ");
+            System.out.println("3. Deleta Usuario");
+            System.out.println("4. Lista Usuario");
+            System.out.println("5. Criar Carteira (NO SQL)");
             System.out.println("6. Sair");
             System.out.print("Escolha uma opção: ");
 

@@ -16,12 +16,14 @@ Este repositório contém todas as classes Java utilizadas no projeto, organizad
 - **Pedro Gustavo Juchimiuk de Oliveira**  
   📧 pedrojuchimiuk@gmail.com
 
-- **Pedro Henrique Ramondini Palmeira**  
-  📧 peramondini709@gmail.com (saiu)
+- **Ezequiael**  
+  📧 
 
+- **Leonardo**  
+  📧 
 ---
 
-> Projeto desenvolvido como parte da disciplina de Engenharia de Software – Fase 4.
+> Projeto desenvolvido como parte da disciplina de Engenharia de Software – Fase 5.
 
 ## 📦 Estrutura do Projeto
 
@@ -35,28 +37,13 @@ O sistema é baseado em um **menu interativo**, onde o usuário escolhe uma das 
   O sistema permite o cadastro de novos usuários, que podem ser **Cliente** ou **Empresa**.  
   Demonstra a aplicação de **herança** e **polimorfismo** no tratamento genérico de objetos do tipo `Usuario`.
 
-
-- **Criar Carteira**  
-  Associa uma **Carteira** a um **Usuário**.  
-  Reflete boas práticas de **normalização**, separando claramente as entidades `Usuario` e `Carteira`.
-
-
-- **Criar Transação**  
-  Permite realizar operações financeiras (como **depósito** ou **saque**) vinculadas a uma **Carteira** específica. A transação é armazenada em uma **lista** associada à carteira.
-
-
-
-- **Armazenar e Exibir Histórico de Transações**  
-  As transações são associadas às carteiras através de um **HashMap**, onde cada chave representa uma **Carteira** e o valor uma **Lista de Transações**.  
-  O professor pode visualizar nesta funcionalidade como o **HashMap** é utilizado para criar uma relação eficiente entre dois tipos de dados.  
-  Além disso, a funcionalidade `armazenaHistoricoTransacao` organiza o histórico, reforçando a importância de **coleções dinâmicas** em Java.
-
+  Inserino na tabela sql usuario, os valores e o salvando.
 
 
 - **Listar Usuários**  
-  Exibe todos os usuários cadastrados, sejam **Clientes** ou **Empresas**, utilizando um **ArrayList**.
+  Exibe todos os usuários cadastrados, sejam **Clientes** ou **Empresas**, estão ligados a tabela **usuario**.
 
-  Aqui o professor consegue identificar o uso de **polimorfismo**, pois a listagem é feita de maneira uniforme para os diferentes tipos de usuário.  
+  Aqui o professor consegue identificar o uso das **Tabelas SQL**, pois a listagem é feita de maneira uniforme para os diferentes tipos de usuário.  
   Mostra também como **coleções genéricas** são utilizadas para manipular objetos que compartilham uma **superclasse**.
 
   
@@ -69,9 +56,8 @@ O sistema é baseado em um **menu interativo**, onde o usuário escolhe uma das 
 
 No método `main`, você encontrará um teste funcional que realiza:
 - Criação dos repositórios
-- Autenticação de usuário
-- Criação de empresas
-- Criação de carteiras para usuários
+- Autenticação de usuário (SQL)
+- Criação de carteiras para usuários (Comun sem coneção de banco)
 
 ---
 

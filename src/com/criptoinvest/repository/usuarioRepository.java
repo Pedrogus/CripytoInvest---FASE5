@@ -103,11 +103,58 @@ public class usuarioRepository implements usuarioRepositoryInterface {
                 System.out.println("ID: " + usuario.getId() +
                         " | Nome: " + usuario.getNome() +
                         " | Email: " + usuario.getEmail() +
-                        " | CPF: " + usuario.getRole());
+                        " | Role: " + usuario.getRole());
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return usuarios;
     }
+
+
+    public boolean atualizarUsuario(Usuario usuario) {
+        String sql = "UPDATE usuario SET nome = ?, email = ?, senha = ?, role = ? WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, usuario.getNome());
+            stmt.setString(2, usuario.getEmail());
+            stmt.setString(3, usuario.getSenha());
+            stmt.setString(4, usuario.getRole());
+            stmt.setLong(5, usuario.getId());
+
+            int rows = stmt.executeUpdate();
+            if (rows > 0) {
+                System.out.println("Usuário atualizado com sucesso! ID: " + usuario.getId());
+                return true;
+            } else {
+                System.out.println("Nenhum usuário encontrado com esse ID.");
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao atualizar usuário: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean excluirUsuario(Long id) {
+        String sql = "DELETE FROM usuario WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setLong(1, id);
+            int rows = stmt.executeUpdate();
+            if (rows > 0) {
+                System.out.println("Usuário removido com sucesso! ID: " + id);
+                return true;
+            } else {
+                System.out.println("Nenhum usuário encontrado com esse ID.");
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao deletar usuário: " + e.getMessage());
+            return false;
+        }
+    }
+
 }

@@ -10,4 +10,6 @@ public interface usuarioRepositoryInterface {
     Optional<Usuario> buscarPorEmail(String email);
     Optional<Usuario> buscarPorId(Long id);
     List<Usuario> listarUsuarios();
+    boolean excluirUsuario(Long id);
+    boolean atualizarUsuario(Usuario usuario);
 }
