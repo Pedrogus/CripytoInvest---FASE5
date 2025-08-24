@@ -38,11 +38,11 @@ public class UsuarioController {
             Usuario usuario;
             if (role.equals("CLIENTE")) {
                 String cpf = lerEntrada(scanner, "CPF: ");
-                usuario = new Cliente((long) (Math.random() * 1000), nome, email, senha, "Cliente", cpf);
+                usuario = new Cliente(null, nome, email, senha, "Cliente", cpf);
             } else if (role.equals("EMPRESA")) {
                 String setor = lerEntrada(scanner, "Setor da Empresa: ");
                 String cnpj = lerEntrada(scanner, "CNPJ: ");
-                usuario = new Empresa((long) (Math.random() * 1000), nome, email, senha, setor, cnpj);
+                usuario = new Empresa(null, nome, email, senha, setor, cnpj);
             } else {
                 throw new IllegalArgumentException("Role inválido!. Use CLIENTE or EMPRESA.");
             }

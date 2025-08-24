@@ -1,44 +1,113 @@
 package com.criptoinvest.repository;
 
 import com.criptoinvest.models.Usuario;
+import com.criptoinvest.persistence.DatabaseConnection;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class usuarioRepository<T extends Usuario> implements usuarioRepositoryInterface<T> {
-    private List<T> usuarios = new ArrayList<>();
+public class usuarioRepository implements usuarioRepositoryInterface {
+    //private List usuarios = new ArrayList<>();
 
     @Override
-    public T salvar(T usuario) {
-        usuarios.add(usuario);
+    public Usuario salvar(Usuario usuario) {
+        String sql = "INSERT INTO usuario (nome,email,senha,role) VALUES (?,?,?,?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            stmt.setString(1, usuario.getNome());
+            stmt.setString(2, usuario.getEmail());
+            stmt.setString(3, usuario.getSenha());
+            stmt.setString(4, usuario.getRole());
+
+            stmt.executeUpdate();
+
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) {
+                usuario.setId(rs.getLong(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return usuario;
     }
 
     @Override
-    public Optional<T> buscarPorEmail(String email) {
-        return usuarios.stream()
-                .filter(u -> u.getEmail().equals(email))
-                .findFirst();
-    }
+    public Optional<Usuario> buscarPorEmail(String email) {
+        String sql = "SELECT * FROM usuario WHERE email = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-    @Override
-    public Optional<T> buscarPorId(Long id) {
-        return usuarios.stream()
-                .filter(u -> u.getId().equals(id))
-                .findFirst();
-    }
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
 
-    @Override
-    public List<T> listarUsuarios() {
-        List<T> listaUsuarios = new ArrayList<>(usuarios);
-        if (listaUsuarios.isEmpty()) {
-            System.out.println("Nenhum usuario encontrado");
-        } else {
-            for(T usuario : listaUsuarios) {
-                System.out.println(usuario.toString());
+            if (rs.next()) {
+                Usuario usuario = new Usuario(
+                        rs.getLong("id"),
+                        rs.getString("nome"),
+                        rs.getString("email"),
+                        rs.getString("senha"),
+                        rs.getString("role")
+                );
+                return Optional.of(usuario);
+
             }
-        }
+        } catch (SQLException e) { e.printStackTrace(); }
+        return Optional.empty();
+    }
 
-        return listaUsuarios;
+
+    @Override
+    public Optional<Usuario> buscarPorId(Long id) {
+        String sql = "SELECT * FROM usuario WHERE id = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Usuario usuario = new Usuario(
+                        rs.getLong("id"),
+                        rs.getString("nome"),
+                        rs.getString("email"),
+                        rs.getString("senha"),
+                        rs.getString("role")
+                );
+                return Optional.of(usuario);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Usuario> listarUsuarios() {
+        List<Usuario> usuarios = new ArrayList<>();
+        String sql = "SELECT * FROM usuario";
+        try (Connection conn = DatabaseConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                Usuario usuario = new Usuario(
+                        rs.getLong("id"),
+                        rs.getString("nome"),
+                        rs.getString("email"),
+                        rs.getString("senha"),
+                        rs.getString("role")
+                );
+                usuarios.add(usuario);
+                System.out.println("ID: " + usuario.getId() +
+                        " | Nome: " + usuario.getNome() +
+                        " | Email: " + usuario.getEmail() +
+                        " | CPF: " + usuario.getRole());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return usuarios;
     }
 }

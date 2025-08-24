@@ -5,9 +5,9 @@ import java.util.Optional;
 
 import com.criptoinvest.models.Usuario;
 
-public interface usuarioRepositoryInterface<T extends Usuario> {
-    T salvar(T usuario);
-    Optional<T> buscarPorEmail(String email);
-    Optional<T> buscarPorId(Long id);
-    List<T> listarUsuarios();
+public interface usuarioRepositoryInterface {
+    Usuario salvar(Usuario usuario);
+    Optional<Usuario> buscarPorEmail(String email);
+    Optional<Usuario> buscarPorId(Long id);
+    List<Usuario> listarUsuarios();
 }

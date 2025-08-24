@@ -6,9 +6,9 @@ import com.criptoinvest.repository.usuarioRepositoryInterface;
 import java.util.List;
 
 public class UsuarioService {
-    private usuarioRepositoryInterface<Usuario> usuarioRepositoryInterface;
+    private usuarioRepositoryInterface usuarioRepositoryInterface;
 
-    public UsuarioService(usuarioRepositoryInterface<Usuario> usuarioRepositoryInterface) {
+    public UsuarioService(usuarioRepositoryInterface usuarioRepositoryInterface) {
         this.usuarioRepositoryInterface = usuarioRepositoryInterface;
     }
 
