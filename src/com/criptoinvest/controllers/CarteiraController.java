@@ -42,8 +42,8 @@ public class CarteiraController {
                     throw new IllegalArgumentException("Saldo Invalido");
                 }
 
-                carteira.carteiraIdGerado = (long) (Math.random() * 1000);
-                Carteira novaCarteira = new Carteira(carteira.carteiraIdGerado, user, saldo);
+ //               carteira.carteiraIdGerado = (long) (Math.random() * 1000);
+                Carteira novaCarteira = new Carteira(null, user, saldo);
                 carteiraRepositoryInterface.salvar(novaCarteira);
 
                 System.out.println("Carteira criada com sucesso! ID: " + novaCarteira.getId());
@@ -65,4 +65,31 @@ public class CarteiraController {
         return null;
 
     }
+
+    public void buscarSaldoPorUsuario(Scanner scanner) {
+        try {
+            System.out.print("Digite o ID do Usuário: ");
+            Long userId = scanner.nextLong();
+            scanner.nextLine();
+
+            // Buscar o usuário (opcional, para validação)
+            Usuario user = usuarioService.buscarPorId(userId);
+            if (user == null) {
+                System.out.println("Usuário não encontrado.");
+                return;
+            }
+
+            // Buscar o saldo via repository
+            double saldo = carteiraService.buscarSaldoPorUsuario(userId); // ou usar direto repository
+            System.out.println("Saldo da carteira do usuário " + userId + ": " + saldo);
+
+        } catch (InputMismatchException e) {
+            System.out.println("Erro: Entrada inválida. Por favor, insira números corretamente.");
+            scanner.nextLine();
+        } catch (Exception e) {
+            System.out.println("Erro inesperado: " + e.getMessage());
+        }
+    }
+
+
 }

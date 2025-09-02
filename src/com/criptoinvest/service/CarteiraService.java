@@ -2,6 +2,8 @@ package com.criptoinvest.service;
 
 import com.criptoinvest.repository.CarteiraRepositoryInterface;
 import com.criptoinvest.models.Carteira;
+
+import java.util.List;
 import java.util.Optional;
 
 public class CarteiraService {
@@ -32,6 +34,16 @@ public class CarteiraService {
 
     public Optional<Carteira> buscarPorId(Long id) {
         return carteiraRepositoryInterface.buscarPorId(id);
+    }
+
+    // Novo método para buscar saldo por usuário
+    public double buscarSaldoPorUsuario(Long usuarioId) {
+        List<Carteira> carteiras = carteiraRepositoryInterface.buscarPorUsuario(usuarioId);
+        double saldoTotal = 0;
+        for (Carteira c : carteiras) {
+            saldoTotal += c.getSaldo();
+        }
+        return saldoTotal;
     }
 
 }

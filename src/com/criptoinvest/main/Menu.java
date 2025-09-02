@@ -21,8 +21,9 @@ public class Menu {
             System.out.println("2. Atualiza Usuario ");
             System.out.println("3. Deleta Usuario");
             System.out.println("4. Lista Usuario");
-            System.out.println("5. Criar Carteira (NO SQL)");
-            System.out.println("6. Sair");
+            System.out.println("5. Criar Carteira");
+            System.out.println("6. Listar Carteiras");
+            System.out.println("7. Sair");
             System.out.print("Escolha uma opção: ");
 
 

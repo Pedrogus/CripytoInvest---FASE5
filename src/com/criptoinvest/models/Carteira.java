@@ -15,6 +15,8 @@ public class Carteira {
         this.saldo = saldo;
     }
 
+
+
     public Long getId() {
         return id;
     }
@@ -29,6 +31,10 @@ public class Carteira {
 
     public void setSaldo(double saldo) {
         this.saldo = saldo;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
 

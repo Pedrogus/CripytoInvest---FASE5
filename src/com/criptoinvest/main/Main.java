@@ -67,9 +67,14 @@ public class Main {
                     break;
 
                 case 6:
+                    carteiraController.buscarSaldoPorUsuario(scanner);
+                    break;
+
+                case 7:
                     System.out.println("Saindo...");
                     scanner.close();
                     return;
+
                 default:
                     System.out.println("Opção inválida.");
             }

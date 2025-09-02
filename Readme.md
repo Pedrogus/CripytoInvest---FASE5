@@ -25,40 +25,63 @@ Este repositório contém todas as classes Java utilizadas no projeto, organizad
 
 > Projeto desenvolvido como parte da disciplina de Engenharia de Software – Fase 5.
 
-## 📦 Estrutura do Projeto
+## 📦 Estrutura do Projeto  
 
-### ✅ Lógica do Sistema
+### 🔹 Funcionalidades principais  
 
-O sistema é baseado em um **menu interativo**, onde o usuário escolhe uma das opções disponíveis, cada uma acionando um conjunto de operações específicas por meio de um **switch-case**. Esse fluxo orienta a execução de todas as funcionalidades principais do sistema.
-
-### 🧩 Estrutura geral do menu
+O sistema é baseado em um **menu interativo (switch-case)**, que permite ao usuário escolher operações de **CRUD** sobre a entidade `Usuario`.  
 
 - **Criar Usuário**  
-  O sistema permite o cadastro de novos usuários, que podem ser **Cliente** ou **Empresa**.  
-  Demonstra a aplicação de **herança** e **polimorfismo** no tratamento genérico de objetos do tipo `Usuario`.
-
-  Inserino na tabela sql usuario, os valores e o salvando.
-
+  - Cadastro de novos usuários como **Cliente** ou **Empresa**.  
+  - Os dados são persistidos diretamente na **tabela SQL `usuario`** via `INSERT`.  
+  - Demonstra **herança** (`Cliente` e `Empresa` estendem `Usuario`).  
 
 - **Listar Usuários**  
-  Exibe todos os usuários cadastrados, sejam **Clientes** ou **Empresas**, estão ligados a tabela **usuario**.
+  - Consulta (`SELECT`) no banco e exibição dos dados em linha (**ID, Nome, Email, CPF/CNPJ**).  
+  - Demonstra uso de **coleções genéricas (`ArrayList<Usuario>`)** para manipulação dos resultados.  
 
-  Aqui o professor consegue identificar o uso das **Tabelas SQL**, pois a listagem é feita de maneira uniforme para os diferentes tipos de usuário.  
-  Mostra também como **coleções genéricas** são utilizadas para manipular objetos que compartilham uma **superclasse**.
+- **Atualizar Usuário**  
+  - Alteração de dados existentes via `UPDATE`.  
 
-  
+- **Excluir Usuário**  
+  - Remoção de registros via `DELETE`.  
+
 - **Sair**  
-  Encerra o programa de forma segura, finalizando a execução e liberando recursos como o `Scanner`.
+  - Finaliza a aplicação de forma segura e libera recursos como `Scanner` e `Connection`.  
 
 ---
 
-## 🚀 Execução
+## 🗄️ Integração com Banco de Dados  
 
-No método `main`, você encontrará um teste funcional que realiza:
-- Criação dos repositórios
-- Autenticação de usuário (SQL)
-- Criação de carteiras para usuários (Comun sem coneção de banco)
+- Conexão implementada via **JDBC (`DriverManager`)** em uma classe utilitária `DatabaseConnection`.  
+- Scripts **DDL** e **DML** foram produzidos de acordo com a modelagem relacional.  
+
+### 🔹 Script DDL  
+- Criação da tabela `usuario`, com atributos específicos para cada tipo (`cpf` para Cliente, `setor`/`cnpj` para Empresa).  
+- Definição de **PKs** e **restrições de integridade**.  
+
+### 🔹 Script DML  
+- Exemplos de `INSERT`, `UPDATE`, `DELETE` e `SELECT` para popular e manipular os dados.  
 
 ---
 
+## 🚀 Execução e Testes  
 
+Na classe `Main`, são instanciados os repositórios e testadas as operações:  
+
+- **Criação de usuários** (inserção no banco).  
+- **Listagem de usuários** (consulta e impressão formatada).  
+- **Atualização e exclusão de usuários**.  
+- **Autenticação de login** simulada.  
+- **Criação de carteira** (implementada sem conexão ao banco, apenas com collections).  
+
+---
+
+## 📚 Requisitos da Fase 5 (atendidos neste projeto)  
+
+- ✅ Script **DDL** com `CREATE TABLE` e restrições (PKs, FKs).  
+- ✅ Script **DML** com `INSERT`, `UPDATE`, `DELETE` e `SELECT`.  
+- ✅ Classes Java organizadas em pacotes (`models`, `repository`, `service`, `controllers`, `config`).  
+- ✅ Classe de conexão com banco de dados **Oracle via JDBC**.  
+- ✅ Integração de **uma classe (`Usuario`)** com o banco, permitindo **CRUD completo**.  
+- ✅ Testes realizados na `Main` com menu interativo.  
