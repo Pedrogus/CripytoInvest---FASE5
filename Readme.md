@@ -20,7 +20,7 @@ Este repositório contém todas as classes Java utilizadas no projeto, organizad
   📧 
 
 - **Leonardo**  
-  📧 
+  📧 leonardostati9@outlook.com 
 ---
 
 > Projeto desenvolvido como parte da disciplina de Engenharia de Software – Fase 5.
@@ -68,6 +68,9 @@ O sistema é baseado em um **menu interativo (switch-case)**, que permite ao usu
 ## 🚀 Execução e Testes  
 
 Na classe `Main`, são instanciados os repositórios e testadas as operações:  
+
+- Para conectar no banco de dados altere a variavel USER e PASS no arquivo DatabaseConnection.java na pasta persistence
+tambem rode o Create_databse_cripto_db.sql para criar o db e as tabelas.
 
 - **Criação de usuários** (inserção no banco).  
 - **Listagem de usuários** (consulta e impressão formatada).  
