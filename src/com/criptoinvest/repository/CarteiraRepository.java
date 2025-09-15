@@ -54,7 +54,7 @@ public class CarteiraRepository implements CarteiraRepositoryInterface {
     public Carteira salvar(Carteira carteira) {
        String sql = "INSERT INTO carteira (usuario_id, saldo) VALUES (?, ?)";
        try(Connection conn = DatabaseConnection.getConnection();
-           PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
+           PreparedStatement stmt = conn.prepareStatement(sql, new String[]{"id"}))
        {
            stmt.setLong(1, carteira.getUsuario().getId());
            stmt.setDouble(2, carteira.getSaldo());

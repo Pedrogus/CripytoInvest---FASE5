@@ -15,11 +15,13 @@ public class usuarioRepository implements usuarioRepositoryInterface {
     public Usuario salvar(Usuario usuario) {
         String sql = "INSERT INTO usuario (nome,email,senha,role) VALUES (?,?,?,?)";
         try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement stmt = conn.prepareStatement(sql, new String[]{"id"})) {
+
             stmt.setString(1, usuario.getNome());
             stmt.setString(2, usuario.getEmail());
             stmt.setString(3, usuario.getSenha());
             stmt.setString(4, usuario.getRole());
+
 
             stmt.executeUpdate();
 

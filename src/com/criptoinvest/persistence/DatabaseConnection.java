@@ -7,7 +7,8 @@ import java.sql.SQLException;
 public class DatabaseConnection {
 
 
-    private  static final String URL = "jdbc:mysql://localhost:3306/cripto_db";
+    //private  static final String URL = "jdbc:mysql://localhost:3306/cripto_db";
+    private  static final String URL = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl";
     private  static final String USER = System.getenv("DB_USER");
     private  static final String PASS = System.getenv("DB_PASS");
 
